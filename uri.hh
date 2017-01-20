@@ -440,6 +440,11 @@ private:
 	std::string::const_iterator authority_cursor = (m_content.begin() + 2);
 	if (m_content.find_first_of('@') != std::string::npos)
 	{
+    // @fixme per RFC 3986 section 3.2.1: authority section is 0 or more sections
+    // delimited by ':' and ended with '@'
+    // parts after first ':' are not supposed to be displayed in printouts
+    // @sa https://tools.ietf.org/html/rfc3986#section-3.2.1
+
 	  std::string::const_iterator userpass_divider = parse_username(uri_text,
 									m_content,
 									authority_cursor);
